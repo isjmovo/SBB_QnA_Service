@@ -16,6 +16,22 @@ class AnswerRepositoryTests {
 	private QuestionRepository questionRepository;
 	@Autowired
 	private AnswerRepository answerRepository;
+	private int lastSampleDataId;
+
+	@BeforeEach
+	void beforeEach() {
+		clearData();
+		createSampleData();
+	}
+
+	private void createSampleData() {
+	}
+
+	private void clearData() {
+		questionRepository.disableForeignKeyCheck();
+		answerRepository.truncate();
+		questionRepository.enableForeignKeyChecks();
+	}
 
 	@Test
 	void 저장() {
