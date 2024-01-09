@@ -4,11 +4,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class AnswerRepositoryTests {
@@ -75,6 +79,8 @@ class AnswerRepositoryTests {
 	}
 
 	@Test
+	@Transactional
+	@Rollback(false)
 	void question으로부터_관련된_질문들_조회() {
 //		SELECT * FROM question WHERE id = 1;
 		Question q = questionRepository.findById(1).get();
@@ -83,7 +89,6 @@ class AnswerRepositoryTests {
 		List<Answer> answerList = q.getAnswerList();
 
 		assertThat(answerList.size()).isEqualTo(2);
-
 		assertThat(answerList.get(0).getContent()).isEqualTo("sbb는 질문답변 게시판입니다.");
 	}
 }
