@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 class AnswerRepositoryTests {
@@ -25,10 +22,12 @@ class AnswerRepositoryTests {
 	}
 
 	private void createSampleData() {
+		QuestionRepositoryTests.createSampleData(questionRepository);
 	}
 
 	private void clearData() {
-		questionRepository.disableForeignKeyCheck();
+		QuestionRepositoryTests.clearData(questionRepository);
+
 		answerRepository.truncate();
 		questionRepository.enableForeignKeyChecks();
 	}
