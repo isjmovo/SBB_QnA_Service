@@ -22,6 +22,13 @@ class SbbApplicationTests {
 	}
 
 	@Test
+	void testJpa0() {
+		questionRepository.disableForeignKeyCheck();
+		questionRepository.truncate();
+		questionRepository.enableForeignKeyChecks();
+	}
+
+	@Test
 	void testJpa1() {
 		Question q1 = new Question();
 		q1.setSubject("sbb가 무엇인가요?");
