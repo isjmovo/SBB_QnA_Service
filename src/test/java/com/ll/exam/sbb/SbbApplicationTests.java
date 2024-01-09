@@ -22,7 +22,7 @@ class SbbApplicationTests {
 	}
 
 	@Test
-	void testJpa() {
+	void testJpa1() {
 		Question q1 = new Question();
 		q1.setSubject("sbb가 무엇인가요?");
 		q1.setContent("sbb에 대해서 알고 싶습니다.");
