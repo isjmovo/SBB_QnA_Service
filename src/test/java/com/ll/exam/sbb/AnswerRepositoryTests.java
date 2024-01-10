@@ -37,13 +37,11 @@ class AnswerRepositoryTests {
 		a1.setContent("sbb는 질문답변 게시판입니다.");
 		a1.setCreateDate(LocalDateTime.now());
 		q.addAnswer(a1);
-		answerRepository.save(a1);
 
 		Answer a2 = new Answer();
 		a2.setContent("sbb에서는 주로 스프링 관련 내용을 다룹니다.");
 		a2.setCreateDate(LocalDateTime.now());
-		q.addAnswer(a1);
-		answerRepository.save(a2);
+		q.addAnswer(a2);
 
 		questionRepository.save(q);
 	}
