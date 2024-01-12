@@ -17,3 +17,9 @@ button[type=submit] {
 html > body {
     font-family: 'GmarketSansMedium';
 }
+
+/* lib */
+a {
+    color: inherit;
+    text-decoration: none;
+}
