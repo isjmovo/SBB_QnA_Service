@@ -1,4 +1,5 @@
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+    layout:decorate="~{layout}">
 
 <div layout:fragment="content" class="container my-3">
     <!-- 질문 -->
@@ -30,7 +31,11 @@
     </div>
 
     <!-- 답변 작성 -->
-    <form method="POST" th:action="@{|/answer/create/${question.id}|}" class="my-3">
+    <form method="POST" th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}" class="my-3">
+        <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
+        </div>
+
         <textarea name="content" rows="10" class="form-control"></textarea>
         <button type="submit" class="btn btn-primary my-2">답변 등록</button>
     </form>

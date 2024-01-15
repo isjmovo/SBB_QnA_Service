@@ -1,5 +1,6 @@
 package com.ll.exam.sbb.Question;
 
+import com.ll.exam.sbb.Answer.AnswerForm;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,7 @@ public class QuesitonController {
   }
 
   @GetMapping("/detail/{id}")
-  public String detail(Model model, @PathVariable int id) {
+  public String detail(Model model, @PathVariable int id, AnswerForm answerForm) {
     Question question = questionService.getQuestion(id);
 
     model.addAttribute("question", question);
