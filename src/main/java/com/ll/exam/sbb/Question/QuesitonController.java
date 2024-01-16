@@ -1,6 +1,7 @@
 package com.ll.exam.sbb.Question;
 
 import com.ll.exam.sbb.Answer.AnswerForm;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,7 +17,11 @@ public class QuesitonController {
   private final QuestionService questionService;
 
   @GetMapping("/list")
-  public String list(Model model, @RequestParam(defaultValue = "0") int page) {
+  public String list(HttpSession session, Model model, @RequestParam(defaultValue = "0") int page) {
+    Object o = session.getAttribute("SPRING_SECURITY_CONTEXT");
+
+    System.out.println(o);
+
     Page<Question> paging = questionService.getList(page);
 
     model.addAttribute("paging", paging);
