@@ -15,8 +15,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class AnswerRepositoryTests {
@@ -24,7 +22,6 @@ class AnswerRepositoryTests {
 	private QuestionRepository questionRepository;
 	@Autowired
 	private AnswerRepository answerRepository;
-	private int lastSampleDataId;
 
 	@BeforeEach
 	void beforeEach() {
@@ -50,11 +47,15 @@ class AnswerRepositoryTests {
 		questionRepository.save(q);
 	}
 
-	private void clearData() {
+	public static void clearData(AnswerRepository answerRepository, QuestionRepository questionRepository) {
 		QuestionRepositoryTests.clearData(questionRepository);
 
 		answerRepository.deleteAll();
 		answerRepository.truncateTable();
+	}
+
+	private void clearData() {
+		clearData(answerRepository, questionRepository);
 	}
 
 	@Test

@@ -28,7 +28,7 @@ public class Question {
 
   @ManyToOne
   private SiteUser author;
-  
+
   @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
   private List<Answer> answerList = new ArrayList<>();
 
