@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,11 +45,13 @@ public class QuesitonController {
   }
 
   @GetMapping("/create")
+  @PreAuthorize("isAuthenticated()")
   public String questionCreate(QuestionForm questionForm) {
     return "question_form";
   }
 
   @PostMapping("/create")
+  @PreAuthorize("isAuthenticated()")
   public String questionCreate(Principal principal,  Model model, @Valid QuestionForm questionForm, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
       return "question_form";
