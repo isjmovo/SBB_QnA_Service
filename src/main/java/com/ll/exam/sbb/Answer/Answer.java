@@ -20,6 +20,7 @@ public class Answer {
   private String content;
 
   private LocalDateTime createDate;
+  private LocalDateTime modifyDate;
 
   @ManyToOne
   @JoinColumn(foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
