@@ -6,6 +6,7 @@ import com.ll.exam.sbb.Question.Question;
 import com.ll.exam.sbb.Question.QuestionRepository;
 import com.ll.exam.sbb.user.SiteUser;
 import com.ll.exam.sbb.user.UserRepository;
+import com.ll.exam.sbb.user.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ class AnswerRepositoryTests {
 	private AnswerRepository answerRepository;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private UserService userService;
 
 	@BeforeEach
 	void beforeEach() {
@@ -34,7 +37,7 @@ class AnswerRepositoryTests {
 	}
 
 	private void createSampleData() {
-		QuestionRepositoryTests.createSampleData(questionRepository);
+		QuestionRepositoryTests.createSampleData(userService, questionRepository);
 
 		Question q = questionRepository.findById(1L).get();
 
