@@ -1,6 +1,8 @@
 package com.ll.exam.sbb.Question;
 
 import com.ll.exam.sbb.Answer.AnswerForm;
+import com.ll.exam.sbb.user.SiteUser;
+import com.ll.exam.sbb.user.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -10,11 +12,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Controller
 @RequiredArgsConstructor  // 생성자 주입
 @RequestMapping("/question")
 public class QuesitonController {
   private final QuestionService questionService;
+  private final UserService userService;
 
   @GetMapping("/list")
   public String list(HttpSession session, Model model, @RequestParam(defaultValue = "0") int page) {
@@ -44,12 +49,14 @@ public class QuesitonController {
   }
 
   @PostMapping("/create")
-  public String questionCreate(Model model, @Valid QuestionForm questionForm, BindingResult bindingResult) {
+  public String questionCreate(Principal principal,  Model model, @Valid QuestionForm questionForm, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
       return "question_form";
     }
 
-    questionService.create(questionForm.getSubject(), questionForm.getContent());
+    SiteUser siteUser = userService.getUser(principal.getName());
+
+    questionService.create(questionForm.getSubject(), questionForm.getContent(), siteUser);
 
     return "redirect:/question/list";
   }
