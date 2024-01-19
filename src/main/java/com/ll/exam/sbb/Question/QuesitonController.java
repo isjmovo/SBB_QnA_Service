@@ -1,7 +1,6 @@
 package com.ll.exam.sbb.Question;
 
 import com.ll.exam.sbb.Answer.AnswerForm;
-import com.ll.exam.sbb.DataNotFoundException;
 import com.ll.exam.sbb.user.SiteUser;
 import com.ll.exam.sbb.user.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -72,10 +71,6 @@ public class QuesitonController {
   public String questionModify(QuestionForm questionForm, @PathVariable("id") Integer id, Principal principal) {
     Question question = questionService.getQuestion(id);
 
-    if (question == null) {
-      throw new DataNotFoundException("%d번 질문은 존재하지 않습니다.");
-    }
-
     if (!question.getAuthor().getUsername().equals(principal.getName())) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한이 없습니다.");
     }
@@ -108,10 +103,6 @@ public class QuesitonController {
   @GetMapping("/delete/{id}")
   public String questionDelete(Principal principal, @PathVariable("id") Integer id) {
     Question question = questionService.getQuestion(id);
-
-    if (question == null) {
-      throw new DataNotFoundException("%d번 질문은 존재하지 않습니다.");
-    }
 
     if (!question.getAuthor().getUsername().equals(principal.getName())) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");
