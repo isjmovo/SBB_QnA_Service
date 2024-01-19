@@ -1,5 +1,6 @@
 package com.ll.exam.sbb.Answer;
 
+import com.ll.exam.sbb.DataNotFoundException;
 import com.ll.exam.sbb.Question.Question;
 import com.ll.exam.sbb.user.SiteUser;
 import lombok.RequiredArgsConstructor;
@@ -21,5 +22,9 @@ public class AnswerService {
     question.addAnswer(answer);
 
     answerRepository.save(answer);
+  }
+
+  public Answer getAnswer(Long id) {
+    return answerRepository.findById(id).orElseThrow(() -> new DataNotFoundException("answer not found"));
   }
 }
