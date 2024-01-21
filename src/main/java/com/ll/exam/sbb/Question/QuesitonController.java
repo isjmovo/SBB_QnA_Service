@@ -25,12 +25,8 @@ public class QuesitonController {
   private final UserService userService;
 
   @GetMapping("/list")
-  public String list(HttpSession session, Model model, @RequestParam(defaultValue = "0") int page) {
-    Object o = session.getAttribute("SPRING_SECURITY_CONTEXT");
-
-    System.out.println(o);
-
-    Page<Question> paging = questionService.getList(page);
+  public String list(String kw, Model model, @RequestParam(defaultValue = "0") int page) {
+    Page<Question> paging = questionService.getList(kw, page);
 
     model.addAttribute("paging", paging);
 
