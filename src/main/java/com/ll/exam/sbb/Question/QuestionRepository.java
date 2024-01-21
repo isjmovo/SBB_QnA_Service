@@ -25,6 +25,8 @@ public interface QuestionRepository extends JpaRepository<Question, Long>, Repos
 
   Page<Question> findBySubjectContainsOrContentContainsOrAuthor_usernameContainsOrAnswerList_contentContains(String kw1, String kw2, String kw3, String kw4, Pageable pageable);
 
+  Page<Question> findDistinctBySubjectContainsOrContentContainsOrAuthor_usernameContainsOrAnswerList_contentContains(String kw1, String kw2, String kw3, String kw4, Pageable pageable);
+
   @Transactional
   @Modifying
   @Query(value = "ALTER TABLE question AUTO_INCREMENT = 1", nativeQuery = true)
