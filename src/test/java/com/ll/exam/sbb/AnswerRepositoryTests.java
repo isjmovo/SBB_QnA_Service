@@ -48,7 +48,7 @@ class AnswerRepositoryTests {
 		q.addAnswer(a1);
 
 		Answer a2 = new Answer();
-		a2.setContent("sbb에서는 주로 스프링 관련 내용을 다룹니다.");
+		a2.setContent("sbb는 스프링부트를 이용한 프로젝트입니다.");
 		a2.setAuthor(new SiteUser(2L));
 		a2.setCreateDate(LocalDateTime.now());
 		q.addAnswer(a2);
