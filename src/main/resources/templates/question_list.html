@@ -1,6 +1,13 @@
 <html xmlns:layout="http://ultraq.net.nz/thymeleaf/layout" xmlns:th="http://thymeleaf.org" layout:decorate="~{layout}">
 
 <div layout:fragment="content" class="container my-3">
+    <a th:href="@{/question/create}" class="btn btn-primary">질문 등록하기</a>
+
+    <form>
+        <input type="text" name="kw" placeholder="검색어를 입력해주세요." th:value="${param.kw}">
+        <button type="submit">검색</button>
+    </form>
+
     <table class="table text-center">
         <colgroup>
             <col>
@@ -53,8 +60,6 @@
         </ul>
     </div>
     <!-- 페이징 처리 끝 -->
-
-    <a th:href="@{/question/create}" class="btn btn-primary">질문 등록하기</a>
 </div>
 
 </html>
