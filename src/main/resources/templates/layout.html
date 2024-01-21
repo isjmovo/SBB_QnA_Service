@@ -11,6 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"></script>
     <!-- sbb CSS -->
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <title>Hello, sbb!</title>
 </head>
 
@@ -30,6 +32,20 @@
 
     <!-- JS -->
     <th:block layout:fragment="script"></th:block>
+
+    <select value="2">
+        <option value="1">1</option>
+        <option value="2">2</option>
+    </select>
+
+    <script>
+        $('select[value]').each((index, node) => {
+            const $select = $(node);
+            const value = $(node).attr("value");
+
+            $select.find(`option[value="${value}"]`).prop("selected", true);
+        });
+    </script>
 </body>
 
 </html>
