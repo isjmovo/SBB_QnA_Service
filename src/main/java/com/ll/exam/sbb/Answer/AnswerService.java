@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class AnswerService {
   private final AnswerRepository answerRepository;
 
-  public void create(Question question, String content, SiteUser author) {
+  public Answer create(Question question, String content, SiteUser author) {
     Answer answer = new Answer();
     answer.setContent(content);
     answer.setCreateDate(LocalDateTime.now());
@@ -22,6 +22,8 @@ public class AnswerService {
     question.addAnswer(answer);
 
     answerRepository.save(answer);
+
+    return answer;
   }
 
   public Answer getAnswer(Long id) {

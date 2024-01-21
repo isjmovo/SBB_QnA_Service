@@ -37,10 +37,9 @@ public class AnswerController {
     }
 
     SiteUser siteUser = userService.getUser(principal.getName());
+    Answer answer = answerService.create(question, answerForm.getContent(), siteUser);
 
-    answerService.create(question, answerForm.getContent(), siteUser);
-
-    return "redirect:/question/detail/%d".formatted(id);
+    return "redirect:/question/detail/%d#answer_%d".formatted(id, answer.getId());
   }
 
   @PreAuthorize("isAuthenticated()")
