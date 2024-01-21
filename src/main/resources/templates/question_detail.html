@@ -18,6 +18,9 @@
                         <span th:text="${question.author?.username}"></span>
                     </div>
                     <div th:text="${#temporals.format(question.createDate, 'yy-MM-dd HH:mm')}"></div>
+                    <div class="mt-2">
+                        조회 : [[${question.hitCount}]]
+                    </div>
                 </div>
             </div>
 
