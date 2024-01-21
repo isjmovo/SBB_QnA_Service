@@ -115,7 +115,7 @@ public class QuesitonController {
 
   @PreAuthorize("isAuthenticated()")
   @GetMapping("/vote/{id}")
-  public String questionVote(Principal principal, @PathVariable("id") Integer id) {
+  public String questionVote(Principal principal, @PathVariable("id") Long id) {
     Question question = questionService.getQuestion(id);
     SiteUser siteUser = userService.getUser(principal.getName());
 
