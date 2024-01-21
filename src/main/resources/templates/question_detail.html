@@ -22,7 +22,7 @@
 
             <div class="my-3">
                 <a onclick="if (!confirm('정말 추천하시겠습니까?')) return false;"
-                    class="recommend btn btn-sm btn-outline-secondary" th:href="@{|question/vote/${question.id}|}">
+                    class="recommend btn btn-sm btn-outline-secondary" th:href="@{|/question/vote/${question.id}|}">
                     추천
                     <span class="badge rounded-pill bg-success" th:text="${#lists.size(question.voter)}"></span>
                 </a>
@@ -62,7 +62,7 @@
             </div>
 
             <div class="my-3">
-                <a onclick="if (!confirm('정말 추천하시겠습니까?')) return false;"
+                <a onclick="if(!confirm('정말 추천하시겠습니까?')) return false;"
                     class="recommend btn btn-sm btn-outline-secondary" th:href="@{|/answer/vote/${answer.id}|}">
                     추천
                     <span class="badge rounded-pill bg-success" th:text="${#lists.size(answer.voter)}"></span>
@@ -73,10 +73,7 @@
                     th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
                     th:text="수정"></a>
 
-                <a onclick="if (!confirm('정말 삭제하시겠습니까?')) return false;" th:href="@{|/answer/delete/${$answer.id}|}"
-                    class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()"
-                    th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
-                    th:text="삭제"></a>
+                <a onclick="if (!confirm('정말 삭제하시겠습니까?')) return false;" th:href="@{|/answer/delete/${answer.id}|}" class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()" th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}" th:text="삭제"></a>
             </div>
         </div>
     </div>
