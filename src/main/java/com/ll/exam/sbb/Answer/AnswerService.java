@@ -1,6 +1,6 @@
 package com.ll.exam.sbb.Answer;
 
-import com.ll.exam.sbb.DataNotFoundException;
+import com.ll.exam.sbb.exception.DataNotFoundException;
 import com.ll.exam.sbb.Question.Question;
 import com.ll.exam.sbb.user.SiteUser;
 import lombok.RequiredArgsConstructor;

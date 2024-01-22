@@ -1,6 +1,6 @@
 package com.ll.exam.sbb.user;
 
-import com.ll.exam.sbb.DataNotFoundException;
+import com.ll.exam.sbb.exception.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
