@@ -50,7 +50,7 @@
                     <span class="text-danger small ms-2" th:text="${question.hitCount}"></span>
                 </td>
                 <td>
-                    <span class="text-danger small ms-2" th:if="${#lists.size(question..answerList) > 0}"
+                    <span class="text-danger small ms-2" th:if="${#lists.size(question.answerList) > 0}"
                         th:text="${#lists.size(question.answerList)}"></span>
                     <span class="text-danger small ms-2" th:if="${#lists.size(question.answerList) == 0}"
                         th:text="0"></span>
