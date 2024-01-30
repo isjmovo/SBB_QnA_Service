@@ -38,6 +38,7 @@ public class QuesitonController {
     Question question = questionService.getQuestion(id);
 
     model.addAttribute("question", question);
+    questionService.increaseHitCount(id);
 
     return "question_detail";
   }

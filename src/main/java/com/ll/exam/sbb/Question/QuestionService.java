@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -62,5 +63,15 @@ public class QuestionService {
   public void vote(Question question, SiteUser siteUser) {
     question.getVoter().add(siteUser);
     questionRepository.save(question);
+  }
+
+  public void increaseHitCount(long questionId) {
+    Optional<Question> optionalQuestion = questionRepository.findById(questionId);
+
+    if (optionalQuestion.isPresent()) {
+      Question question = optionalQuestion.get();
+      question.setHitCount(question.getHitCount() + 1);
+      questionRepository.save(question);
+    }
   }
 }

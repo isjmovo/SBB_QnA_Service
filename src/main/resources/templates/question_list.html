@@ -61,7 +61,7 @@
 
     <!-- 페이징 처리 시작 -->
     <div th:if="${!paging.isEmpty()}"
-        th:with="queryStrBase = '?kw' + ${param.kw}, queryStrBase = ${queryStrBase} + '&sortCode=' + ${param.sortCode}">
+        th:with="queryStrBase = '?kw=' + ${param.kw}, queryStrBase = ${queryStrBase} + '&sortCode=' + ${param.sortCode}">
         <ul class="pagination justify-content-center">
             <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
                 <a class="page-link" th:href="@{|${queryStrBase}&page=${paging.number - 1}|}">
